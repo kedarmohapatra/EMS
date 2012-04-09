@@ -22,9 +22,5 @@
 		</tr>
 		</#list>
 	</table>
-
-	<@spring.bind "command.empId"/>
-	<input type="text" value="${spring.status.value?default("
-		")}" name="${spring.status.expression}" />
 </body>
 </html>

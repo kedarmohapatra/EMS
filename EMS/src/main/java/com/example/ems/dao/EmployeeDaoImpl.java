@@ -5,23 +5,24 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
 import com.example.ems.domain.Employee;
 
-public class EmployeeDaoImpl implements EmployeeDao{
+@Repository
+public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao{
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> searchEmployee(String name) {
-		List<Employee> employees = sessionFactory.getCurrentSession().createCriteria(Employee.class).add(Restrictions.or(Restrictions.ilike("last_name", name), Restrictions.ilike("first_name", name))).list();
+		List<Employee> employees = getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Employee.class).add(Restrictions.ilike("first_name", "%"+name+"%")).list();
+//		List<String> employees = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select emp from Employee emp").list();
 		return employees;
 	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+	
+	@Autowired
+	public void setupSessionFactory(SessionFactory factory){
+		this.setSessionFactory(factory);
 	}
-
 }
