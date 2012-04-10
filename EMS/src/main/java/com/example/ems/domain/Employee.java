@@ -1,13 +1,15 @@
 package com.example.ems.domain;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,7 +18,7 @@ import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name="employees")
-public class Employee extends DomainObject{
+public class Employee implements DomainObject{
 	
 	private Integer empId;
 	private String firstName;
@@ -24,10 +26,11 @@ public class Employee extends DomainObject{
 	private String email;
 	private String phoneNumber;
 	private Date hireDate;
-	private String jobId;
-	private BigDecimal salary;
-	private BigDecimal commissionPct;
-	private Integer departmentId;
+	private Job job;
+	private Float salary;
+	private Float commissionPct;
+	private Department department;
+	private Employee manager;
 	
 	@Id
 	@Column(name="EMPLOYEE_ID")
@@ -81,38 +84,49 @@ public class Employee extends DomainObject{
 		this.hireDate = hireDate;
 	}
 	
-	@Column(name="job_id")
-	public String getJobId() {
-		return jobId;
+	@ManyToOne
+	@JoinColumn(name="job_id")
+	public Job getJob() {
+		return job;
 	}
-	public void setJobId(String jobId) {
-		this.jobId = jobId;
+	public void setJob(Job job) {
+		this.job = job;
 	}
 	
 	@Column(name="salary")
 	@Digits(fraction = 2, integer = 8)
-	public BigDecimal getSalary() {
+	public Float getSalary() {
 		return salary;
 	}
-	public void setSalary(BigDecimal salary) {
+	public void setSalary(Float salary) {
 		this.salary = salary;
 	}
 	
 	@Column(name="commission_pct")
 	@Digits(fraction = 2, integer = 8)
-	public BigDecimal getCommissionPct() {
+	public Float getCommissionPct() {
 		return commissionPct;
 	}
-	public void setCommissionPct(BigDecimal commissionPct) {
+	public void setCommissionPct(Float commissionPct) {
 		this.commissionPct = commissionPct;
 	}
 	
-	@Column(name="department_id")
-	public Integer getDepartmentId() {
-		return departmentId;
+	@ManyToOne
+	@JoinColumn(name="department_id")
+	public Department getDepartment() {
+		return department;
 	}
-	public void setDepartmentId(Integer departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="manager_id")
+	public Employee getManager() {
+		return manager;
+	}
+	public void setManager(Employee manager) {
+		this.manager = manager;
 	}
 
 }

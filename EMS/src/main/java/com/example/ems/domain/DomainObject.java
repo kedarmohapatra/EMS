@@ -1,5 +1,5 @@
 package com.example.ems.domain;
 
-public class DomainObject {
+public interface DomainObject {
 
 }

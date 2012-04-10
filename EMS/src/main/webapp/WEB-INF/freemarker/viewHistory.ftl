@@ -15,10 +15,10 @@
 		</tr>
 		<#list history as employeeHistory>
 		<tr>
-			<td>${employeeHistory.jobHistoryId.employeeId}</td>
-			<td>${employeeHistory.jobHistoryId.startDate}</td>
-			<td>${employeeHistory.endFate}</td>
-			<td>${employeeHistory.job}</td>
+			<td>${employeeHistory.jobHistoryId.employeeId!""}</td>
+			<td>${employeeHistory.jobHistoryId.startDate?string.short!""}</td>
+			<td>${employeeHistory.endDate?string.short!""}</td>
+			<td>${employeeHistory.job.jobTitle!""}</td>
 		</tr>
 		</#list>
 	</table>

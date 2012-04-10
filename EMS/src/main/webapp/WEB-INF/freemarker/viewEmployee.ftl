@@ -29,11 +29,11 @@
 		</tr>
 		<tr>
 			<th>Hire Date</th>
-			<td>${employee.phoneNumber}</td>
+			<td>${employee.hireDate?string.full}</td>
 		</tr>
 		<tr>
 			<th>Job id</th>
-			<td>${employee.jobId}</td>
+			<td>${employee.job.jobTitle}</td>
 		</tr>
 		<tr>
 			<th>Salary</th>
@@ -45,7 +45,11 @@
 		</tr>
 		<tr>
 			<th>Department</th>
-			<td>${employee.departmentId}</td>
+			<td><a href="/EMS/department/${employee.department.departmentId}.do">${employee.department.departmentId}</td>
+		</tr>
+		<tr>
+			<th>Manager</th>
+			<td><a href="${employee.manager.empId}.do">${employee.manager.firstName} ${employee.manager.lastName}</td>
 		</tr>
 	</table>
 </body>
