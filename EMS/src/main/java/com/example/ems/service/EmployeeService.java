@@ -8,4 +8,6 @@ public interface EmployeeService {
 
 	List<Employee> searchEmployee(String parameter);
 
+	Employee get(int id);
+
 }

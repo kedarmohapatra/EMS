@@ -1,8 +1,10 @@
 package com.example.ems.domain;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,22 +12,21 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.Entity;
-
+import javax.validation.constraints.Digits;
 
 @Entity
 @Table(name="employees")
 public class Employee extends DomainObject{
+	
 	private Integer empId;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private Integer phoneNumber;
+	private String phoneNumber;
 	private Date hireDate;
 	private String jobId;
-	private Float salary;
-	private Float commissionPct;
+	private BigDecimal salary;
+	private BigDecimal commissionPct;
 	private Integer departmentId;
 	
 	@Id
@@ -64,10 +65,10 @@ public class Employee extends DomainObject{
 	}
 	
 	@Column(name="phone_number")
-	public Integer getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(Integer phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	
@@ -88,19 +89,21 @@ public class Employee extends DomainObject{
 		this.jobId = jobId;
 	}
 	
-	@Column(name="salary", length=8, precision=2)
-	public Float getSalary() {
+	@Column(name="salary")
+	@Digits(fraction = 2, integer = 8)
+	public BigDecimal getSalary() {
 		return salary;
 	}
-	public void setSalary(Float salary) {
+	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
 	}
 	
-	@Column(name="commission_pct", length=2, precision=2)
-	public Float getCommissionPct() {
+	@Column(name="commission_pct")
+	@Digits(fraction = 2, integer = 8)
+	public BigDecimal getCommissionPct() {
 		return commissionPct;
 	}
-	public void setCommissionPct(Float commissionPct) {
+	public void setCommissionPct(BigDecimal commissionPct) {
 		this.commissionPct = commissionPct;
 	}
 	

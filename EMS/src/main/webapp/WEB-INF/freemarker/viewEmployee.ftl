@@ -41,7 +41,7 @@
 		</tr>
 		<tr>
 			<th>Commission Pct</th>
-			<td>${employee.commissionPct}</td>
+			<td>${employee.commissionPct!"0.0"}</td>
 		</tr>
 		<tr>
 			<th>Department</th>

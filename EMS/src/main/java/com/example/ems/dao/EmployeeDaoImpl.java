@@ -16,13 +16,17 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> searchEmployee(String name) {
-		List<Employee> employees = getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Employee.class).add(Restrictions.ilike("first_name", "%"+name+"%")).list();
-//		List<String> employees = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery("select emp from Employee emp").list();
+		List<Employee> employees = getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Employee.class).add(Restrictions.or(Restrictions.ilike("firstName", "%"+name+"%"), Restrictions.ilike("lastName", "%"+name+"%"))).list();
 		return employees;
 	}
 	
 	@Autowired
 	public void setupSessionFactory(SessionFactory factory){
 		this.setSessionFactory(factory);
+	}
+
+	@Override
+	public Employee get(int id) {
+		return (Employee)getHibernateTemplate().get(Employee.class, id);
 	}
 }

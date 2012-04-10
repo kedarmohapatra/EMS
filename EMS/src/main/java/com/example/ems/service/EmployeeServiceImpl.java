@@ -21,5 +21,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public void setEmployeeDao(EmployeeDao employeeDao) {
 		this.employeeDao = employeeDao;
 	}
+	@Override
+	public Employee get(int id) {
+		return employeeDao.get(id);
+	}
 
 }

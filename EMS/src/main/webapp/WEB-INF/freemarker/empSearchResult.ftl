@@ -18,7 +18,7 @@
 			<td>${employee.empId}</td>
 			<td>${employee.firstName}</td>
 			<td>${employee.lastName}</td>
-			<td><a href="employee/${employee.empId}.do">Detail</a></td>
+			<td><a href="${employee.empId}.do">Detail</a></td>
 		</tr>
 		</#list>
 	</table>

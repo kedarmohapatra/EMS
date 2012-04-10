@@ -8,4 +8,6 @@ public interface EmployeeDao {
 
 	List<Employee> searchEmployee(String name);
 
+	Employee get(int id);
+
 }
