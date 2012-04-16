@@ -3,24 +3,27 @@
 <#import "/spring.ftl" as spring>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search Employee</title>
+<title>Update Employee</title>
 </head>
 <body>
 	<table border="0">
 		<tr>
-			<th>Id</th>
-			<th>Start Date</th>
-			<th>End Date</th>
-			<th>Past Jobs</th>
+			<th>First Name</th>
+			<td>
+				<@spring.bind employee.firstName>
+				<input name="${spring.status.expresssion}" value="${spring.status.value}"/>
+			</td>
 		</tr>
-		<#list history as employeeHistory>
-		<tr>
-			<td>${employeeHistory.jobHistoryId.employeeId}</td>
-			<td>${employeeHistory.jobHistoryId.startDate}</td>
-			<td>${employeeHistory.endFate}</td>
-			<td>${employeeHistory.job}</td>
+			<th>Last Name</th>
+			<th>Email</th>
+			<th>Phone Number</th>
+			<th>Hire Date</th>
+			<th>Job</th>
+			<th>Salary</th>
+			<th>Commission Pct</th>
+			<th>Manager</th>
+			<th>Department</th>
 		</tr>
-		</#list>
 	</table>
 </body>
 </html>

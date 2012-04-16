@@ -1,6 +1,7 @@
 package com.example.ems.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,19 @@ public class EmployeeController {
 	
 	@RequestMapping("/{id}")
 	public String viewEmployee(@PathVariable int id ,ModelMap modelMap){
+		modelMap.put("employee", employeeService.get(id));
+		return "viewEmployee";
+	}
+	
+	@RequestMapping("/update/{id}")
+	public String updateEmployee(@PathVariable int id ,ModelMap modelMap){
+		modelMap.put("employee", employeeService.get(id));
+		return "updateEmployee";
+	}
+	
+	@RequestMapping("/export/{id}")
+	public String exportEmployee(@PathVariable int id ,HttpServletResponse response, ModelMap modelMap){
+		response.setContentType("text/xml");
 		modelMap.put("employee", employeeService.get(id));
 		return "viewEmployee";
 	}
