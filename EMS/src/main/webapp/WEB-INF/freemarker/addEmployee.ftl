@@ -6,30 +6,31 @@
 <title>Update Employee</title>
 </head>
 <body>
+	<form action="addSuccess.do">
 	<table border="0">
 		<tr>
 			<th>First Name</th>
-			<td><@spring.bind command.firstName/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="firstName" type="text"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Last Name</th>
-			<td><@spring.bind command.lastName/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="lastName" type="text"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Email</th>
-			<td><@spring.bind command.email/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="email" type="text"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Phone Number</th>
-			<td><@spring.bind command.phoneNumber/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="phoneNumber" type="text"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Hire Date</th>
-			<td><@spring.bind command.hireDate/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="hireDate" type="text"/>
 			</td>
 		</tr>
 		<tr>
@@ -37,19 +38,19 @@
 			<td>
 			<select name="job">
 				<#list jobs as job>
-					<option name="${job.jobId}" value="${job.jobTitle}" />
+					<option name="${job.jobId}" >${job.jobTitle}</option>
 				</#list>
 			</select>
 			</td>
 		</tr>
 		<tr>
 			<th>Salary</th>
-			<td><@spring.bind command.salary/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="salary" type="text"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Commission Pct</th>
-			<td><@spring.bind command.commissionPct/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><input name="commissionPct" type="text"/>
 			</td>
 		</tr>
 		<tr>
@@ -57,7 +58,7 @@
 			<td>
 				<select name="manager">
 					<#list managers as manager>
-						<option name="${manager.empId}" value="${manager.firstName} ${manager.lastName}" />
+						<option name="${manager.empId}">${manager.firstName} ${manager.lastName}</option>
 					</#list>
 				</select>
 			</td>
@@ -67,11 +68,13 @@
 			<td>
 				<select name="department">
 					<#list departments as department>
-						<option name="${department.departmentId}" value="${department.departmentName}" />
+						<option name="${department.departmentId}">${department.departmentName}</option>
 					</#list>
 				</select>
 			</td>
 		</tr>
+		<tr><input type="submit" name="submit"></tr>
 	</table>
+	</form>
 </body>
 </html>

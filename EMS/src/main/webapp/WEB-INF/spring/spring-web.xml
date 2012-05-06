@@ -17,5 +17,5 @@
 		p:templateLoaderPath="/WEB-INF/freemarker/" />
 	<bean name="viewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
-		p:suffix=".ftl" p:prefix="" p:cache="true" p:exposeSpringMacroHelpers="true"></bean>
+		p:suffix=".ftl" p:prefix="" p:cache="true" p:exposeSpringMacroHelpers="true"/>
 </beans>

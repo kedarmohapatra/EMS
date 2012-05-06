@@ -1,13 +1,9 @@
-
-package com.example.ems.dao;
+package com.example.ems.service;
 
 import java.util.List;
 
 import com.example.ems.domain.Job;
 
-public interface JobDao {
-
-	Job get(String id);
-
+public interface JobService {
 	List<Job> getAll();
 }

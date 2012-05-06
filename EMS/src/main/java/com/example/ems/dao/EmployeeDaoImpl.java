@@ -29,4 +29,9 @@ public class EmployeeDaoImpl extends HibernateDaoSupport implements EmployeeDao{
 	public Employee get(int id) {
 		return (Employee)getHibernateTemplate().get(Employee.class, id);
 	}
+
+	@Override
+	public List<Employee> getManagers() {
+		return null;
+	}
 }
