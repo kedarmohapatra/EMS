@@ -8,14 +8,14 @@ import com.example.ems.dao.EmployeeDao;
 import com.example.ems.domain.Employee;
 
 @Component
-public class EmployeeConverter implements Converter<Integer, Employee>{
+public class EmployeeConverter implements Converter<String, Employee>{
 
 	@Autowired
 	private EmployeeDao employeeDao;
 	
 	@Override
-	public Employee convert(Integer empId) {
-		return employeeDao.get(empId);
+	public Employee convert(String empId) {
+		return employeeDao.get(Integer.parseInt(empId));
 	}
 
 	public void setEmployeeDao(EmployeeDao employeeDao) {

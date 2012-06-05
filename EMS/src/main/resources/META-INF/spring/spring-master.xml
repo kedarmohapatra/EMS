@@ -39,14 +39,4 @@
     <bean id="defaultLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"/>
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" p:sessionFactory-ref="sessionFactory"/>
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-	<bean id="conversionService"
-      class="org.springframework.context.support.ConversionServiceFactoryBean">
-    <property name="converters">
-        <list>
-            <bean class="com.example.ems.converter.DepartmentConverter"/>
-            <bean class="com.example.ems.converter.JobConverter"/>
-            <bean class="com.example.ems.converter.EmployeeConverter"/>
-        </list>
-    </property>
-</bean>
 </beans>

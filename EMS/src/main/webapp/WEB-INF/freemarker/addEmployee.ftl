@@ -38,7 +38,7 @@
 			<td>
 			<select name="job">
 				<#list jobs as job>
-					<option name="${job.jobId}" >${job.jobTitle}</option>
+					<option name="${job.jobId}" value="${job.jobId}" >${job.jobTitle}</option>
 				</#list>
 			</select>
 			</td>
@@ -58,7 +58,7 @@
 			<td>
 				<select name="manager">
 					<#list managers as manager>
-						<option name="${manager.empId}">${manager.firstName} ${manager.lastName}</option>
+						<option name="${manager.empId}" value="${manager.empId}">${manager.firstName} ${manager.lastName}</option>
 					</#list>
 				</select>
 			</td>
@@ -68,7 +68,7 @@
 			<td>
 				<select name="department">
 					<#list departments as department>
-						<option name="${department.departmentId}">${department.departmentName}</option>
+						<option name="${department.departmentId}" value="${department.departmentId}">${department.departmentName}</option>
 					</#list>
 				</select>
 			</td>

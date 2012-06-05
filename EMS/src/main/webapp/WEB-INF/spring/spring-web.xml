@@ -11,11 +11,21 @@
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<mvc:annotation-driven />
+	<mvc:annotation-driven  conversion-service="conversionService"/>
 	<bean name="freemarkerConfigurer"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"
 		p:templateLoaderPath="/WEB-INF/freemarker/" />
 	<bean name="viewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"
 		p:suffix=".ftl" p:prefix="" p:cache="true" p:exposeSpringMacroHelpers="true"/>
+	<bean id="conversionService"
+      class="org.springframework.context.support.ConversionServiceFactoryBean">
+    <property name="converters">
+        <list>
+            <bean class="com.example.ems.converter.DepartmentConverter"/>
+            <bean class="com.example.ems.converter.JobConverter"/>
+            <bean class="com.example.ems.converter.EmployeeConverter"/>
+        </list>
+    </property>
+	</bean>
 </beans>

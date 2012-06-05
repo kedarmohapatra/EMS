@@ -56,18 +56,20 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping("/add")
-	public String addEmployee(Employee command, ModelMap modelMap){
+	public String addEmployee(ModelMap modelMap){
 		modelMap.put("jobs", jobService.getAll());
 		modelMap.put("departments", departmentService.getAll());
 		modelMap.put("managers", employeeService.getAllManagers());
 		return "addEmployee";
 	}
 	
-//	@RequestMapping("/update/{id}")
-//	public String updateEmployee(@PathVariable int id ,ModelMap modelMap){
-//		modelMap.put("employee", employeeService.get(id));
-//		return "updateEmployee";
-//	}
+	@RequestMapping("/addSuccess")
+	public String addEmployeeSuccess(Employee command, ModelMap modelMap){
+		modelMap.put("jobs", jobService.getAll());
+		modelMap.put("departments", departmentService.getAll());
+		modelMap.put("managers", employeeService.getAllManagers());
+		return "addEmployee";
+	}
 	
 	@RequestMapping("/export/{id}")
 	public String exportEmployee(@PathVariable int id ,HttpServletResponse response, ModelMap modelMap){
@@ -78,7 +80,7 @@ public class EmployeeController {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, false));
