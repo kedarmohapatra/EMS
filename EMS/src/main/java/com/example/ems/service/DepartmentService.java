@@ -7,4 +7,5 @@ import com.example.ems.domain.Department;
 public interface DepartmentService {
 	Department get(int id);
 	List<Department> getAll();
+	int getEmployeesInDepartment(int id);
 }

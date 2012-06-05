@@ -23,5 +23,9 @@
 			<th>Location</th>
 			<td>${department.location.streetAddress}<br>${department.location.postalCode}<br>${department.location.city}<br>${department.location.stateProvince}<br>${department.location.country.countryName}</td>
 		</tr>
+		<tr>
+			<th>Total Employees</th>
+			<td>${totalEmployees}</td>
+		</tr>
 	</table>
 </body>

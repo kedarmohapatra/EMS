@@ -8,4 +8,5 @@ public interface DepartmentDao {
 
 	Department get(int id);
 	List<Department> getAll();
+	int getEmployeesInDepartment(int id);
 }

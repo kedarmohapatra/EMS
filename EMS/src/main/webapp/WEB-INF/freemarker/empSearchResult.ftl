@@ -6,7 +6,7 @@
 <title>Search Employee</title>
 </head>
 <body>
-	<table border="0">
+	<table border="1">
 		<tr>
 			<th>Id</th>
 			<th>First Name</th>

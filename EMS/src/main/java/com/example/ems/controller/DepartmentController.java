@@ -22,6 +22,7 @@ public class DepartmentController {
 	@RequestMapping("/{id}")
 	public String getDepartmentById(@PathVariable int id, ModelMap modelMap){
 		modelMap.put("department", departmentService.get(id));
+		modelMap.put("totalEmployees", departmentService.getEmployeesInDepartment(id));
 		return "viewDepartment";
 	}
 }

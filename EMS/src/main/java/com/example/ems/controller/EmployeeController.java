@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -39,7 +40,7 @@ public class EmployeeController {
 	
 	@RequestMapping("/search")
 	public String searchEmployee(HttpServletRequest request, ModelMap modelMap){
-		modelMap.put("employees", employeeService.searchEmployee(request.getParameter("name")));
+		modelMap.put("employees", employeeService.searchEmployee(request.getParameter("name"), request.getParameter("start")));
 		return "empSearchResult";
 	}
 	
@@ -64,7 +65,8 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping("/addSuccess")
-	public String addEmployeeSuccess(Employee command, ModelMap modelMap){
+	public String addEmployeeSuccess(@Valid Employee command, ModelMap modelMap){
+		employeeService.save(command);
 		modelMap.put("jobs", jobService.getAll());
 		modelMap.put("departments", departmentService.getAll());
 		modelMap.put("managers", employeeService.getAllManagers());
@@ -82,8 +84,12 @@ public class EmployeeController {
 	public void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
 		dateFormat.setLenient(false);
+		SimpleDateFormat dateFormat1 = new SimpleDateFormat("dd/mm/yyyy");
+		dateFormat1.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 				dateFormat, false));
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat1, false));
 	}
 
 	public void setEmployeeService(EmployeeService employeeService) {
