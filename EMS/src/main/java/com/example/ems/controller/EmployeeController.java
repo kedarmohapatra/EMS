@@ -38,6 +38,11 @@ public class EmployeeController {
 		return "empSearch";
 	}
 	
+	@RequestMapping("/displayAjaxSearch")
+	public String showEmployeeAjaxSearchPage(){
+		return "searchAjax";
+	}
+	
 	@RequestMapping("/search")
 	public String searchEmployee(HttpServletRequest request, ModelMap modelMap){
 		modelMap.put("employees", employeeService.searchEmployee(request.getParameter("name"), request.getParameter("start")));
@@ -71,6 +76,12 @@ public class EmployeeController {
 		modelMap.put("departments", departmentService.getAll());
 		modelMap.put("managers", employeeService.getAllManagers());
 		return "addEmployee";
+	}
+	
+	@RequestMapping("/searchAjax")
+	public String searchAjax(HttpServletRequest request, ModelMap modelMap){
+		modelMap.put("employees", employeeService.searchEmployee(request.getParameter("name"), request.getParameter("start")));
+		return "empSearchResult";
 	}
 	
 	@RequestMapping("/export/{id}")

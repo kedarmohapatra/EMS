@@ -232,6 +232,11 @@
 			<artifactId>freemarker</artifactId>
 			<version>2.3.14</version>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-servlet</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
     <build>
     	<finalName>EMS</finalName>

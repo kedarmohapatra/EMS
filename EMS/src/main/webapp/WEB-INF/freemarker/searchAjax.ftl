@@ -4,17 +4,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Search Employee</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"/>
 <script type="text/javascript">
-$(document).ready(function() {
-	   $("#empId").change(function(e) {
-	     // send request
+	   $("#empId").change(function() {
+	     alert("dasd");
 	     $.post("searchAjax.do", {rating: $(this).text()}, function(xml) {
 	       // format and output result
 	       $("#ajaxResults").html(xml);
 	     });
 	   });
-	 });
 </script>
 </head>
 <body>
