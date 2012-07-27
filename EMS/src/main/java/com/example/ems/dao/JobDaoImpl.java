@@ -16,6 +16,7 @@ public class JobDaoImpl extends HibernateDaoSupport implements JobDao {
 		return getHibernateTemplate().get(Job.class, id);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Job> getAll() {
 		return getHibernateTemplate().getSessionFactory().getCurrentSession().createCriteria(Job.class).list();

@@ -8,4 +8,5 @@ public interface EmployeeDao extends GenericDao<Employee>{
 
 	List<Employee> searchEmployee(String name, String start);
 
+    List getManager();
 }

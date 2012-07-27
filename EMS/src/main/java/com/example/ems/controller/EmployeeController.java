@@ -11,16 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.ems.domain.Employee;
 import com.example.ems.service.DepartmentService;
 import com.example.ems.service.EmployeeService;
 import com.example.ems.service.JobService;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/employee")
@@ -33,7 +35,7 @@ public class EmployeeController {
 	@Autowired
 	private DepartmentService departmentService;
 
-	@RequestMapping("/displaySearch")
+	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public String showEmployeeSearchPage(){
 		return "empSearch";
 	}
@@ -43,25 +45,41 @@ public class EmployeeController {
 		return "searchAjax";
 	}
 	
-	@RequestMapping("/search")
+	@RequestMapping(value="/search", method= RequestMethod.POST)
 	public String searchEmployee(HttpServletRequest request, ModelMap modelMap){
 		modelMap.put("employees", employeeService.searchEmployee(request.getParameter("name"), request.getParameter("start")));
 		return "empSearchResult";
 	}
 	
 	@RequestMapping("/{id}")
-	public String viewEmployee(@PathVariable int id ,ModelMap modelMap){
+	public ModelAndView viewEmployee(@PathVariable int id ,ModelMap modelMap){
 		modelMap.put("employee", employeeService.get(id));
-		return "viewEmployee";
+        ModelAndView mav = new ModelAndView( "articleXmlView", BindingResult.MODEL_KEY_PREFIX +
+                "article", employeeService.get(id) );
+		return mav;
 	}
+
+    @RequestMapping("/emp")
+    public ModelAndView viewEmployee1(){
+        ModelAndView mav = new ModelAndView( "articleXmlView", BindingResult.MODEL_KEY_PREFIX +
+                "article", employeeService.get(101) );
+        return mav;
+    }
 	
-	@RequestMapping("/update/{id}")
-	public String updateEmployee(@PathVariable int id ,@ModelAttribute Employee command){
-		command=new Employee();
+	@RequestMapping(method= RequestMethod.GET, value="/update/{id}")
+	public String displayUpdateEmployee(@PathVariable int id ,ModelMap modelMap){
+		modelMap.put("command", employeeService.get(id));
 		return "updateEmployee";
 	}
 	
-	@RequestMapping("/add")
+	@RequestMapping(method= RequestMethod.POST, value="/update/{id}")
+	public String updateEmployee(Employee employee, ModelMap modelMap){
+		employeeService.update(employee);
+		modelMap.put("command", employee);
+		return "updateEmployee";
+	}
+	
+	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addEmployee(ModelMap modelMap){
 		modelMap.put("jobs", jobService.getAll());
 		modelMap.put("departments", departmentService.getAll());
@@ -69,7 +87,7 @@ public class EmployeeController {
 		return "addEmployee";
 	}
 	
-	@RequestMapping("/addSuccess")
+	@RequestMapping(value="/add", method= RequestMethod.POST)
 	public String addEmployeeSuccess(@Valid Employee command, ModelMap modelMap){
 		employeeService.save(command);
 		modelMap.put("jobs", jobService.getAll());
@@ -90,6 +108,8 @@ public class EmployeeController {
 		modelMap.put("employee", employeeService.get(id));
 		return "viewEmployee";
 	}
+
+
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

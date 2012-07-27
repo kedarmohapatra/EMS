@@ -1,5 +1,7 @@
 package com.example.ems.domain;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Departments")
+@XStreamAlias( "employee" )
 public class Department implements DomainObject {
 	
 	@Id

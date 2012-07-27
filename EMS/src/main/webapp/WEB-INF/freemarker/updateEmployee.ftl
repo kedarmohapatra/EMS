@@ -6,59 +6,61 @@
 <title>Update Employee</title>
 </head>
 <body>
-	<form action="update.do">
+	<form action="" method="post">
+	<@spring.formHiddenInput "command.empId"/>
 	<table border="0">
 		<tr>
 			<th>First Name</th>
-			<td><@spring.bind command.firstName/> <input type="text" name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.firstName"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Last Name</th>
-			<td><@spring.bind command.lastName/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.lastName"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Email</th>
-			<td><@spring.bind command.email/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.email"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Phone Number</th>
-			<td><@spring.bind command.phoneNumber/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.phoneNumber"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Hire Date</th>
-			<td><@spring.bind command.hireDate/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.hireDate"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Job</th>
-			<td><@spring.bind command.job.jobId/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.job.jobId"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Salary</th>
-			<td><@spring.bind command.salary/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.salary"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Commission Pct</th>
-			<td><@spring.bind command.commissionPct/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.commissionPct"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Manager</th>
-			<td><@spring.bind command.manager.empId/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.manager.empId"/>
 			</td>
 		</tr>
 		<tr>
 			<th>Department</th>
-			<td><@spring.bind command.department.departmentId/> <input name="${spring.status.expresssion}" value="${spring.status.value}" />
+			<td><@spring.formInput "command.department.departmentId"/>
 			</td>
 		</tr>
 	</table>
+	<input type="submit" value="update" />
 	</form>
 </body>
 </html>

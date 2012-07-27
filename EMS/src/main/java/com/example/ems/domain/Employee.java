@@ -1,5 +1,7 @@
 package com.example.ems.domain;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,10 +18,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
 
+
 @Entity
 @Table(name="employees")
+@XStreamAlias( "employee" )
 public class Employee implements DomainObject{
-	
 	private Integer empId;
 	private String firstName;
 	private String lastName;
@@ -31,7 +34,7 @@ public class Employee implements DomainObject{
 	private Float commissionPct;
 	private Department department;
 	private Employee manager;
-	
+		
 	@Id
 	@Column(name="EMPLOYEE_ID")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="EMP_SEQ")
@@ -42,6 +45,7 @@ public class Employee implements DomainObject{
 	public void setEmpId(Integer empId) {
 		this.empId = empId;
 	}
+
 	
 	@Column(name="first_name")
 	public String getFirstName() {
@@ -120,7 +124,7 @@ public class Employee implements DomainObject{
 		this.department = department;
 	}
 
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="manager_id")
 	public Employee getManager() {
 		return manager;
@@ -129,4 +133,7 @@ public class Employee implements DomainObject{
 		this.manager = manager;
 	}
 
+    public String toString(){
+        return firstName+lastName;
+    }
 }

@@ -1,7 +1,11 @@
 package com.example.ems.dao;
 
+import org.hibernate.LockOptions;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 public class GenericDaoImpl <E> implements GenericDao<E>{
 	
@@ -19,8 +23,10 @@ public class GenericDaoImpl <E> implements GenericDao<E>{
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional(propagation=Propagation.REQUIRES_NEW, isolation=Isolation.DEFAULT)
 	public E get(Integer id) {
-		return (E) sessionFactory.getCurrentSession().get(type, id);
+		E element = (E) sessionFactory.getCurrentSession().get(type, id, LockOptions.UPGRADE);
+		return element;
 	}
 	
 	public void save(E element) {
@@ -31,8 +37,9 @@ public class GenericDaoImpl <E> implements GenericDao<E>{
 		sessionFactory.getCurrentSession().delete(element);
 	}
 
+	@Transactional(propagation=Propagation.SUPPORTS, isolation=Isolation.DEFAULT)
 	public void update(E element) {
-		sessionFactory.getCurrentSession().update(element);
+		sessionFactory.getCurrentSession().merge(element);
 	}
 
 }

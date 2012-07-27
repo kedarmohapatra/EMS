@@ -6,7 +6,7 @@
 <title>Search Employee</title>
 </head>
 <body>
-	<form action="search.do">
+	<form action="search.do" method="post">
 		Name (min 3 characters): <input type="text" name="name" size="20" /> <input
 			type="submit" value="Search" />
 	</form>

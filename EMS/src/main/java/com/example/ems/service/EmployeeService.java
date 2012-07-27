@@ -14,4 +14,6 @@ public interface EmployeeService {
 
 	void save(Employee command);
 
+	void update(Employee employee);
+
 }

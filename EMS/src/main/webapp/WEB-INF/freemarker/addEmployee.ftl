@@ -6,7 +6,7 @@
 <title>Update Employee</title>
 </head>
 <body>
-	<form action="addSuccess.do">
+	<form action="add.do" method="post">
 	<table border="0">
 		<tr>
 			<th>First Name</th>
@@ -73,8 +73,8 @@
 				</select>
 			</td>
 		</tr>
-		<tr><input type="submit" name="submit"></tr>
 	</table>
+	<input type="submit" name="submit">
 	</form>
 </body>
 </html>
