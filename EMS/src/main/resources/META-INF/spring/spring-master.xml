@@ -54,5 +54,6 @@
 	<cache:annotation-driven/>
 
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
-<!--this was added to child-->
+<!--this was added to master-changed original-->
+    <!--masteronly-->
 </beans>
